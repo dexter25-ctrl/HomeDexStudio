@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DexStudio - Premium Web Tools</title>
+    <title>DexStudio | Premium Web Tools Hub</title>
+    <meta name="description" content="DexStudio - A premium hub for modern web tools and applications.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -21,266 +21,277 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
                 }
             }
         }
     </script>
     <style>
+        @layer utilities {
+            .glass {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+            }
+            .glow-hover:hover {
+                box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+            }
+        }
+        
         body {
-            background-color: #020617;
-            /* slate-950 */
-            background-image: radial-gradient(circle at top center, rgba(30, 41, 59, 0.4) 0%, rgba(2, 6, 23, 1) 100%);
+            background-color: #020617; /* bg-slate-950 */
+            background-image: radial-gradient(circle at 50% 0%, rgba(30, 58, 138, 0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 100% 100%, rgba(88, 28, 135, 0.1) 0%, transparent 40%);
             background-attachment: fixed;
-            min-height: 100vh;
         }
 
         .bento-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .bento-card:hover {
-            box-shadow: 0 0 30px rgba(96, 165, 250, 0.15);
+            transform: scale(1.05);
+            border-color: rgba(96, 165, 250, 0.4);
         }
 
-        .hover-glow:hover i {
-            filter: drop-shadow(0 0 10px currentColor);
+        .lang-active {
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
         }
     </style>
 </head>
-
-<body class="font-sans antialiased text-slate-200">
+<body class="font-sans text-slate-300 antialiased min-h-screen">
 
     <!-- Header -->
-    <header
-        class="fixed top-0 left-0 right-0 z-50 bg-slate-950/60 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-3 cursor-pointer group">
-                <div
-                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300">
-                    <i class="fa-solid fa-code"></i>
+    <header class="fixed top-0 w-full z-50 glass border-b border-slate-800/50 h-20 flex items-center">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-lg shadow-lg shadow-blue-500/20 flex items-center justify-center">
+                    <i data-lucide="layers" class="text-white w-5 h-5"></i>
                 </div>
-                <span
-                    class="text-xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">DextStudio</span>
+                <h1 class="text-2xl font-extrabold text-white tracking-tight">DexStudio</h1>
             </div>
-
-            <!-- Language Toggle -->
-            <button id="langToggle"
-                class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 hover:border-slate-500 hover:bg-slate-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 group">
-                <i class="fa-solid fa-globe text-slate-400 group-hover:text-blue-400 transition-colors"></i>
-                <span class="text-sm font-semibold tracking-wide flex items-center gap-1">
-                    <span id="langEN" class="text-white">EN</span>
-                    <span class="text-slate-600">|</span>
-                    <span id="langFR" class="text-slate-500">FR</span>
-                </span>
-            </button>
+            
+            <div class="flex items-center gap-4">
+                <button id="langToggle" class="group flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700 bg-slate-900/50 hover:border-slate-500 transition-all duration-300">
+                    <i data-lucide="globe" class="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors"></i>
+                    <div class="text-xs font-medium flex gap-1 items-center uppercase">
+                        <span id="langFR" class="text-slate-500">FR</span>
+                        <span class="text-slate-700">|</span>
+                        <span id="langEN" class="lang-active">EN</span>
+                    </div>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto">
-
+    <main class="pt-40 pb-20 container mx-auto px-6">
+        
         <!-- Hero Section -->
-        <section class="text-center mb-20 px-4">
-            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600">
-                    DextStudio
-                </span>
-            </h1>
-            <p id="subtitleText"
-                class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
-                A premium hub showcasing our suite of ultra-modern web tools and applications. Designed for performance,
-                crafted for elegance.
+        <section class="max-w-3xl mx-auto text-center mb-24">
+            <h2 id="heroTitle" class="text-5xl md:text-7xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-600 tracking-tight">
+                DexStudio
+            </h2>
+            <p id="heroSubtitle" class="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+                Your ultimate hub for ultra-modern web utilities. Explore our collection of high-performance tools designed to elevate your digital experience.
             </p>
         </section>
 
-        <!-- Bento Grid Layout -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px]">
-
-            <!-- Tool Card 1 -->
-            <a href="#"
-                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-blue-500/50 cursor-pointer lg:col-span-2 lg:row-span-1">
-                <div
-                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
-                    <div
-                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
-                        <i
-                            class="fa-solid fa-laptop-code text-6xl text-slate-600 group-hover:text-blue-400 transition-all duration-300 group-hover:scale-110"></i>
-                        <div
-                            class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            
+            <!-- TokToolkit (Specific First Tool) -->
+            <a href="https://toktoolkit.vercel.app" target="_blank" class="bento-card group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden glow-hover md:col-span-2 lg:col-span-2">
+                <div class="aspect-video w-full overflow-hidden bg-slate-800/50 relative">
+                    <!-- Replacement Note: Place your screenshot here as toktoolkit.png -->
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1200" alt="TokToolkit Preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-sm p-2 rounded-full border border-slate-700/50">
+                        <i data-lucide="external-link" class="w-4 h-4 text-white"></i>
                     </div>
                 </div>
-                <div
-                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
-                    <div>
-                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-blue-400 transition-colors">
-                            CodeForge</h3>
-                        <p class="text-sm text-slate-400 font-medium">Advanced syntax highlighting engine</p>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20">
+                            <i data-lucide="music" class="w-5 h-5 text-pink-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">TokToolkit</h3>
                     </div>
-                    <div
-                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
-                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
-                    </div>
+                    <p class="text-slate-400 font-medium translate-y-0 group-hover:translate-y-[-2px] transition-transform">
+                        Your essential toolkit for TikTok content creation. Streamline your workflow with precision tools.
+                    </p>
                 </div>
             </a>
 
-            <!-- Tool Card 2 -->
-            <a href="#"
-                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-purple-500/50 cursor-pointer">
-                <div
-                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
-                    <div
-                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
-                        <i
-                            class="fa-solid fa-chart-pie text-6xl text-slate-600 group-hover:text-purple-400 transition-all duration-300 group-hover:scale-110"></i>
-                        <div
-                            class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
+            <!-- Placeholder 1: Analytics -->
+            <div class="bento-card group flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 p-6 glow-hover">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6">
+                    <i data-lucide="bar-chart-3" class="w-6 h-6 text-blue-400"></i>
                 </div>
-                <div
-                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
-                    <div>
-                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-purple-400 transition-colors">
-                            DataViz</h3>
-                        <p class="text-sm text-slate-400 font-medium">Interactive charts & graphs</p>
-                    </div>
-                    <div
-                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
-                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
-                    </div>
+                <h3 class="text-xl font-bold text-white mb-2">DexAnalytics</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    Real-time data visualization and tracking for your digital assets. Insightful, clean, and fast.
+                </p>
+                <div class="mt-auto pt-6 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Coming Soon</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                 </div>
-            </a>
+            </div>
 
-            <!-- Tool Card 3 -->
-            <a href="#"
-                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-pink-500/50 cursor-pointer">
-                <div
-                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
-                    <div
-                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
-                        <i
-                            class="fa-solid fa-palette text-6xl text-slate-600 group-hover:text-pink-400 transition-all duration-300 group-hover:scale-110"></i>
-                        <div
-                            class="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
+            <!-- Placeholder 2: Security -->
+            <div class="bento-card group flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 p-6 glow-hover">
+                <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-purple-400"></i>
                 </div>
-                <div
-                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
-                    <div>
-                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-pink-400 transition-colors">
-                            ColorSync</h3>
-                        <p class="text-sm text-slate-400 font-medium">Smart palette generator</p>
-                    </div>
-                    <div
-                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
-                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
-                    </div>
+                <h3 class="text-xl font-bold text-white mb-2">DexGuard</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    Advanced security suite to protect your web projects from threats. Robust and reliable.
+                </p>
+                <div class="mt-auto pt-6 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Under Dev</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                 </div>
-            </a>
+            </div>
 
-            <!-- Tool Card 4 -->
-            <a href="#"
-                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-indigo-500/50 cursor-pointer lg:col-span-2">
-                <div
-                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
-                    <div
-                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
-                        <i
-                            class="fa-solid fa-layer-group text-6xl text-slate-600 group-hover:text-indigo-400 transition-all duration-300 group-hover:scale-110"></i>
-                        <div
-                            class="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
+            <!-- Placeholder 3: Design -->
+            <div class="bento-card group flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 p-6 glow-hover lg:col-span-1">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6">
+                    <i data-lucide="palette" class="w-6 h-6 text-emerald-400"></i>
                 </div>
-                <div
-                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
-                    <div>
-                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-indigo-400 transition-colors">
-                            LayoutGen</h3>
-                        <p class="text-sm text-slate-400 font-medium">Visual CSS Grid builder</p>
-                    </div>
-                    <div
-                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
-                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
-                    </div>
+                <h3 class="text-xl font-bold text-white mb-2">DexStyle</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    A collection of premium design tokens and UI components for modern developers.
+                </p>
+                <div class="mt-auto pt-6 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Beta Access</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                 </div>
-            </a>
+            </div>
 
-        </section>
+            <!-- Placeholder 4: Automation -->
+            <div class="bento-card group flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 p-6 glow-hover">
+                <div class="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6">
+                    <i data-lucide="zap" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">DexFlow</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    Automate repetitive tasks with our drag-and-drop workflow builder. Increase productivity.
+                </p>
+                <div class="mt-auto pt-6 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Concept</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </div>
+            </div>
 
+             <!-- Placeholder 5: Cloud -->
+             <div class="bento-card group flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 p-6 glow-hover">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-6">
+                    <i data-lucide="cloud" class="w-6 h-6 text-cyan-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">DexCloud</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    Fast and secure cloud storage solutions integrated directly into your DexStudio dashboard.
+                </p>
+                <div class="mt-auto pt-6 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Planning</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </div>
+            </div>
+
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/60 bg-slate-950/80 backdrop-blur-lg">
-        <div
-            class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between text-slate-500 text-sm">
-            <div class="flex items-center gap-2 mb-4 md:mb-0">
-                <i class="fa-solid fa-code text-blue-500"></i>
-                <p>&copy; 2026 DextStudio. All rights reserved.</p>
+    <footer class="border-t border-slate-800/50 py-12 mt-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-slate-800 rounded flex items-center justify-center">
+                    <i data-lucide="layers" class="text-slate-400 w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-slate-500 font-bold text-sm">DexStudio</span>
             </div>
-            <div class="flex gap-5">
-                <a href="#" class="hover:text-blue-400 transition-colors transform hover:scale-110 duration-200"><i
-                        class="fa-brands fa-github text-xl"></i></a>
-                <a href="#" class="hover:text-blue-400 transition-colors transform hover:scale-110 duration-200"><i
-                        class="fa-brands fa-twitter text-xl"></i></a>
-                <a href="#" class="hover:text-blue-400 transition-colors transform hover:scale-110 duration-200"><i
-                        class="fa-brands fa-discord text-xl"></i></a>
+            <p class="text-slate-600 text-sm">&copy; 2026 DexStudio. Built for the modern web.</p>
+            <div class="flex gap-4">
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Language Logic Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langToggle = document.getElementById('langToggle');
-            const langEN = document.getElementById('langEN');
-            const langFR = document.getElementById('langFR');
-            const subtitleText = document.getElementById('subtitleText');
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-            const translations = {
-                'EN': "A premium hub showcasing our suite of ultra-modern web tools and applications. Designed for performance, crafted for elegance.",
-                'FR': "Un hub premium présentant notre suite d'outils et d'applications web ultra-modernes. Conçu pour la performance, façonné avec élégance."
-            };
+        const langToggle = document.getElementById('langToggle');
+        const langEN = document.getElementById('langEN');
+        const langFR = document.getElementById('langFR');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroSubtitle = document.getElementById('heroSubtitle');
 
-            let currentLang = 'EN';
+        const content = {
+            'EN': {
+                title: "DexStudio",
+                subtitle: "Your ultimate hub for ultra-modern web utilities. Explore our collection of high-performance tools designed to elevate your digital experience."
+            },
+            'FR': {
+                title: "DexStudio",
+                subtitle: "Votre hub ultime pour des utilitaires web ultra-modernes. Explorez notre collection d'outils haute performance conçus pour sublimer votre expérience numérique."
+            }
+        };
 
-            langToggle.addEventListener('click', () => {
-                // Button click animation
-                langToggle.style.transform = 'scale(0.95)';
-                setTimeout(() => langToggle.style.transform = 'scale(1)', 150);
+        let currentLang = 'EN';
 
-                // Toggle logic
-                if (currentLang === 'EN') {
-                    currentLang = 'FR';
-                    langEN.classList.remove('text-white');
-                    langEN.classList.add('text-slate-500');
-                    langFR.classList.remove('text-slate-500');
-                    langFR.classList.add('text-white');
-                } else {
-                    currentLang = 'EN';
-                    langFR.classList.remove('text-white');
-                    langFR.classList.add('text-slate-500');
-                    langEN.classList.remove('text-slate-500');
-                    langEN.classList.add('text-white');
-                }
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'EN' ? 'FR' : 'EN';
+            
+            // Update UI
+            if (currentLang === 'FR') {
+                langFR.classList.add('lang-active');
+                langFR.classList.remove('text-slate-500');
+                langEN.classList.remove('lang-active');
+                langEN.classList.add('text-slate-500');
+            } else {
+                langEN.classList.add('lang-active');
+                langEN.classList.remove('text-slate-500');
+                langFR.classList.remove('lang-active');
+                langFR.classList.add('text-slate-500');
+            }
 
-                // Subtitle transition
-                subtitleText.style.opacity = '0';
-                subtitleText.style.transform = 'translateY(10px)';
+            // Animate content change
+            heroTitle.style.opacity = '0';
+            heroSubtitle.style.opacity = '0';
+            
+            setTimeout(() => {
+                heroTitle.innerText = content[currentLang].title;
+                heroSubtitle.innerText = content[currentLang].subtitle;
+                heroTitle.style.opacity = '1';
+                heroSubtitle.style.opacity = '1';
+            }, 200);
+        });
 
-                setTimeout(() => {
-                    subtitleText.textContent = translations[currentLang];
-                    subtitleText.style.opacity = '1';
-                    subtitleText.style.transform = 'translateY(0)';
-                }, 300);
-            });
-
-            subtitleText.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        // Add smooth transitions for text
+        [heroTitle, heroSubtitle].forEach(el => {
+            el.style.transition = 'opacity 0.3s ease';
         });
     </script>
 </body>
-
 </html>
