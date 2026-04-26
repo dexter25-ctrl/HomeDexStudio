@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DextStudio - Premium Web Tools</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            /* slate-950 */
+            background-image: radial-gradient(circle at top center, rgba(30, 41, 59, 0.4) 0%, rgba(2, 6, 23, 1) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .bento-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.15);
+        }
+
+        .hover-glow:hover i {
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-slate-200">
+
+    <!-- Header -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-slate-950/60 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer group">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <span
+                    class="text-xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">DextStudio</span>
+            </div>
+
+            <!-- Language Toggle -->
+            <button id="langToggle"
+                class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 hover:border-slate-500 hover:bg-slate-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 group">
+                <i class="fa-solid fa-globe text-slate-400 group-hover:text-blue-400 transition-colors"></i>
+                <span class="text-sm font-semibold tracking-wide flex items-center gap-1">
+                    <span id="langEN" class="text-white">EN</span>
+                    <span class="text-slate-600">|</span>
+                    <span id="langFR" class="text-slate-500">FR</span>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-20 px-4">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600">
+                    DextStudio
+                </span>
+            </h1>
+            <p id="subtitleText"
+                class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                A premium hub showcasing our suite of ultra-modern web tools and applications. Designed for performance,
+                crafted for elegance.
+            </p>
+        </section>
+
+        <!-- Bento Grid Layout -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px]">
+
+            <!-- Tool Card 1 -->
+            <a href="#"
+                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-blue-500/50 cursor-pointer lg:col-span-2 lg:row-span-1">
+                <div
+                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
+                    <div
+                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
+                        <i
+                            class="fa-solid fa-laptop-code text-6xl text-slate-600 group-hover:text-blue-400 transition-all duration-300 group-hover:scale-110"></i>
+                        <div
+                            class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-blue-400 transition-colors">
+                            CodeForge</h3>
+                        <p class="text-sm text-slate-400 font-medium">Advanced syntax highlighting engine</p>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
+                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Tool Card 2 -->
+            <a href="#"
+                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-purple-500/50 cursor-pointer">
+                <div
+                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
+                    <div
+                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
+                        <i
+                            class="fa-solid fa-chart-pie text-6xl text-slate-600 group-hover:text-purple-400 transition-all duration-300 group-hover:scale-110"></i>
+                        <div
+                            class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-purple-400 transition-colors">
+                            DataViz</h3>
+                        <p class="text-sm text-slate-400 font-medium">Interactive charts & graphs</p>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
+                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Tool Card 3 -->
+            <a href="#"
+                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-pink-500/50 cursor-pointer">
+                <div
+                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
+                    <div
+                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
+                        <i
+                            class="fa-solid fa-palette text-6xl text-slate-600 group-hover:text-pink-400 transition-all duration-300 group-hover:scale-110"></i>
+                        <div
+                            class="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-pink-400 transition-colors">
+                            ColorSync</h3>
+                        <p class="text-sm text-slate-400 font-medium">Smart palette generator</p>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
+                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Tool Card 4 -->
+            <a href="#"
+                class="bento-card hover-glow group relative flex flex-col rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden hover:scale-[1.03] hover:border-indigo-500/50 cursor-pointer lg:col-span-2">
+                <div
+                    class="flex-1 w-full relative overflow-hidden bg-slate-800/30 p-6 flex items-center justify-center">
+                    <div
+                        class="w-full h-full rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center shadow-inner relative overflow-hidden">
+                        <i
+                            class="fa-solid fa-layer-group text-6xl text-slate-600 group-hover:text-indigo-400 transition-all duration-300 group-hover:scale-110"></i>
+                        <div
+                            class="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="p-6 border-t border-slate-800/50 bg-slate-900/80 backdrop-blur-md flex justify-between items-center z-10">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1 group-hover:text-indigo-400 transition-colors">
+                            LayoutGen</h3>
+                        <p class="text-sm text-slate-400 font-medium">Visual CSS Grid builder</p>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-white text-slate-400 transition-all shadow-lg">
+                        <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                    </div>
+                </div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/60 bg-slate-950/80 backdrop-blur-lg">
+        <div
+            class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between text-slate-500 text-sm">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <i class="fa-solid fa-code text-blue-500"></i>
+                <p>&copy; 2026 DextStudio. All rights reserved.</p>
+            </div>
+            <div class="flex gap-5">
+                <a href="#" class="hover:text-blue-400 transition-colors transform hover:scale-110 duration-200"><i
+                        class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors transform hover:scale-110 duration-200"><i
+                        class="fa-brands fa-twitter text-xl"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors transform hover:scale-110 duration-200"><i
+                        class="fa-brands fa-discord text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            const langEN = document.getElementById('langEN');
+            const langFR = document.getElementById('langFR');
+            const subtitleText = document.getElementById('subtitleText');
+
+            const translations = {
+                'EN': "A premium hub showcasing our suite of ultra-modern web tools and applications. Designed for performance, crafted for elegance.",
+                'FR': "Un hub premium présentant notre suite d'outils et d'applications web ultra-modernes. Conçu pour la performance, façonné avec élégance."
+            };
+
+            let currentLang = 'EN';
+
+            langToggle.addEventListener('click', () => {
+                // Button click animation
+                langToggle.style.transform = 'scale(0.95)';
+                setTimeout(() => langToggle.style.transform = 'scale(1)', 150);
+
+                // Toggle logic
+                if (currentLang === 'EN') {
+                    currentLang = 'FR';
+                    langEN.classList.remove('text-white');
+                    langEN.classList.add('text-slate-500');
+                    langFR.classList.remove('text-slate-500');
+                    langFR.classList.add('text-white');
+                } else {
+                    currentLang = 'EN';
+                    langFR.classList.remove('text-white');
+                    langFR.classList.add('text-slate-500');
+                    langEN.classList.remove('text-slate-500');
+                    langEN.classList.add('text-white');
+                }
+
+                // Subtitle transition
+                subtitleText.style.opacity = '0';
+                subtitleText.style.transform = 'translateY(10px)';
+
+                setTimeout(() => {
+                    subtitleText.textContent = translations[currentLang];
+                    subtitleText.style.opacity = '1';
+                    subtitleText.style.transform = 'translateY(0)';
+                }, 300);
+            });
+
+            subtitleText.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+    </script>
+</body>
+
+</html>
