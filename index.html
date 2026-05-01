@@ -129,8 +129,8 @@
                         <i data-lucide="crosshair" class="w-6 h-6 text-pink-500"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2">Creator Flow</h3>
-                    <p class="text-xs text-slate-400 font-medium leading-relaxed">
-                        Your essential toolkit for modern content creation. Streamline your workflow with precision tools.
+                    <p id="descCreatorFlow" class="text-xs text-slate-400 font-medium leading-relaxed">
+                        Optimize your profile and boost your conversions. Transform your audience into concrete opportunities at the heart of the funnel.
                     </p>
                 </div>
             </a>
@@ -149,8 +149,8 @@
                         <i data-lucide="book-open" class="w-6 h-6 text-blue-400"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2">ThreadPro</h3>
-                    <p class="text-xs text-slate-400 font-medium leading-relaxed">
-                        Transform your ideas into high-performing Twitter/X threads. The ultimate SaaS tool for content creators.
+                    <p id="descThreadPro" class="text-xs text-slate-400 font-medium leading-relaxed">
+                        Dominate the attention and attract massive traffic. The strategic tool to pierce the top of your acquisition funnel.
                     </p>
                 </div>
             </a>
@@ -169,8 +169,8 @@
                         <i data-lucide="shield-check" class="w-6 h-6 text-indigo-400"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2">EasyPrivacy</h3>
-                    <p class="text-xs text-slate-400 font-medium leading-relaxed">
-                        Automated GDPR compliance and privacy audits for your business. Stay secure and compliant with ease.
+                    <p id="descEasyPrivacy" class="text-xs text-slate-400 font-medium leading-relaxed">
+                        Legally secure your growth. Automated GDPR protection to shield your revenue at the end of the funnel.
                     </p>
                 </div>
             </a>
@@ -250,15 +250,24 @@
         const langFR = document.getElementById('langFR');
         const heroTitle = document.getElementById('heroTitle');
         const heroSubtitle = document.getElementById('heroSubtitle');
+        const descCreatorFlow = document.getElementById('descCreatorFlow');
+        const descThreadPro = document.getElementById('descThreadPro');
+        const descEasyPrivacy = document.getElementById('descEasyPrivacy');
 
         const content = {
             'EN': {
                 title: "DexStudio",
-                subtitle: "Your ultimate hub for ultra-modern web utilities. Explore our collection of high-performance tools designed to elevate your digital experience."
+                subtitle: "Your ultimate hub for ultra-modern web utilities. Explore our collection of high-performance tools designed to elevate your digital experience.",
+                descCreatorFlow: "Optimize your profile and boost your conversions. Transform your audience into concrete opportunities at the heart of the funnel.",
+                descThreadPro: "Dominate the attention and attract massive traffic. The strategic tool to pierce the top of your acquisition funnel.",
+                descEasyPrivacy: "Legally secure your growth. Automated GDPR protection to shield your revenue at the end of the funnel."
             },
             'FR': {
                 title: "DexStudio",
-                subtitle: "Votre hub ultime pour des utilitaires web ultra-modernes. Explorez notre collection d'outils haute performance conçus pour sublimer votre expérience numérique."
+                subtitle: "Votre hub ultime pour des utilitaires web ultra-modernes. Explorez notre collection d'outils haute performance conçus pour sublimer votre expérience numérique.",
+                descCreatorFlow: "Optimisez votre profil et boostez vos conversions. Transformez votre audience en opportunités concrètes au cœur du funnel.",
+                descThreadPro: "Dominez l'attention et attirez un trafic massif. L'outil stratégique pour percer le haut de votre tunnel d'acquisition.",
+                descEasyPrivacy: "Sécurisez juridiquement votre croissance. Une protection RGPD automatisée pour blinder vos revenus en fin de tunnel."
             }
         };
 
@@ -283,17 +292,27 @@
             // Animate content change
             heroTitle.style.opacity = '0';
             heroSubtitle.style.opacity = '0';
+            descCreatorFlow.style.opacity = '0';
+            descThreadPro.style.opacity = '0';
+            descEasyPrivacy.style.opacity = '0';
             
             setTimeout(() => {
                 heroTitle.innerText = content[currentLang].title;
                 heroSubtitle.innerText = content[currentLang].subtitle;
+                descCreatorFlow.innerText = content[currentLang].descCreatorFlow;
+                descThreadPro.innerText = content[currentLang].descThreadPro;
+                descEasyPrivacy.innerText = content[currentLang].descEasyPrivacy;
+                
                 heroTitle.style.opacity = '1';
                 heroSubtitle.style.opacity = '1';
+                descCreatorFlow.style.opacity = '1';
+                descThreadPro.style.opacity = '1';
+                descEasyPrivacy.style.opacity = '1';
             }, 200);
         });
 
         // Add smooth transitions for text
-        [heroTitle, heroSubtitle].forEach(el => {
+        [heroTitle, heroSubtitle, descCreatorFlow, descThreadPro, descEasyPrivacy].forEach(el => {
             el.style.transition = 'opacity 0.3s ease';
         });
     </script>
