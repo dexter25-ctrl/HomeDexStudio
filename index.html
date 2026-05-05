@@ -127,11 +127,11 @@
         <!-- Bento Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
 
-            <!-- Creator Flow Tool -->
+            <!-- HypePulse Tool -->
             <a href="https://creatorflow-dex.vercel.app/" target="_blank"
                 class="bento-card group relative flex flex-col aspect-square rounded-2xl bg-slate-900/50 border border-slate-800 overflow-hidden glow-hover">
                 <div class="h-1/2 w-full overflow-hidden bg-slate-800/50 relative">
-                    <img src="assets/toktoolkit.png" alt="Creator Flow Preview"
+                    <img src="assets/toktoolkit.png" alt="HypePulse Preview"
                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                     <div
@@ -144,9 +144,8 @@
                         class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 mb-3">
                         <i data-lucide="crosshair" class="w-6 h-6 text-pink-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2">Creator
-                        Flow</h3>
-                    <p id="descCreatorFlow" class="text-xs text-slate-400 font-medium leading-relaxed">
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2">HypePulse</h3>
+                    <p id="descHypePulse" class="text-xs text-slate-400 font-medium leading-relaxed">
                         Optimize your profile and boost your conversions. Transform your audience into concrete
                         opportunities at the heart of the tunnel.
                     </p>
@@ -291,7 +290,7 @@
         const langFR = document.getElementById('langFR');
         const heroTitle = document.getElementById('heroTitle');
         const heroSubtitle = document.getElementById('heroSubtitle');
-        const descCreatorFlow = document.getElementById('descCreatorFlow');
+        const descHypePulse = document.getElementById('descHypePulse');
         const descThreadPro = document.getElementById('descThreadPro');
         const descEasyPrivacy = document.getElementById('descEasyPrivacy');
 
@@ -299,14 +298,14 @@
             'EN': {
                 title: "DexStudio",
                 subtitle: "Your ultimate hub for ultra-modern web utilities. Explore our collection of high-performance tools designed to elevate your digital experience.",
-                descCreatorFlow: "Optimize your profile and boost your conversions. Transform your audience into concrete opportunities at the heart of the tunnel.",
+                descHypePulse: "Optimize your profile and boost your conversions. Transform your audience into concrete opportunities at the heart of the tunnel.",
                 descThreadPro: "Dominate the attention and attract massive traffic. The strategic tool to pierce the top of your acquisition tunnel.",
                 descEasyPrivacy: "Legally secure your growth. Automated GDPR protection to shield your revenue at the end of the tunnel."
             },
             'FR': {
                 title: "DexStudio",
                 subtitle: "Votre hub ultime pour des utilitaires web ultra-modernes. Explorez notre collection d'outils haute performance conçus pour sublimer votre expérience numérique.",
-                descCreatorFlow: "Optimisez votre profil et boostez vos conversions. Transformez votre audience en opportunités concrètes au cœur du tunnel.",
+                descHypePulse: "Optimisez votre profil et boostez vos conversions. Transformez votre audience en opportunités concrètes au cœur du tunnel.",
                 descThreadPro: "Dominez l'attention et attirez un trafic massif. L'outil stratégique pour percer le sommet de votre tunnel d'acquisition.",
                 descEasyPrivacy: "Sécurisez légalement votre croissance. Une protection RGPD automatisée pour bouclier votre business à la fin du tunnel."
             }
@@ -333,27 +332,27 @@
             // Animate content change
             heroTitle.style.opacity = '0';
             heroSubtitle.style.opacity = '0';
-            descCreatorFlow.style.opacity = '0';
+            descHypePulse.style.opacity = '0';
             descThreadPro.style.opacity = '0';
             descEasyPrivacy.style.opacity = '0';
 
             setTimeout(() => {
                 heroTitle.innerText = content[currentLang].title;
                 heroSubtitle.innerText = content[currentLang].subtitle;
-                descCreatorFlow.innerText = content[currentLang].descCreatorFlow;
+                descHypePulse.innerText = content[currentLang].descHypePulse;
                 descThreadPro.innerText = content[currentLang].descThreadPro;
                 descEasyPrivacy.innerText = content[currentLang].descEasyPrivacy;
 
                 heroTitle.style.opacity = '1';
                 heroSubtitle.style.opacity = '1';
-                descCreatorFlow.style.opacity = '1';
+                descHypePulse.style.opacity = '1';
                 descThreadPro.style.opacity = '1';
                 descEasyPrivacy.style.opacity = '1';
             }, 200);
         });
 
         // Add smooth transitions for text
-        [heroTitle, heroSubtitle, descCreatorFlow, descThreadPro, descEasyPrivacy].forEach(el => {
+        [heroTitle, heroSubtitle, descHypePulse, descThreadPro, descEasyPrivacy].forEach(el => {
             el.style.transition = 'opacity 0.3s ease';
         });
     </script>
